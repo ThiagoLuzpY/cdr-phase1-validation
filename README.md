@@ -57,50 +57,48 @@ We validate CDR on a **2-component Ising conditional kernel** where we control e
 ---
 
 ## Project Structure
-
 ```
 cdr-phase1-validation/
-├── README.md                           # ← You are here
-├── requirements.txt                    # ← Python dependencies
-├── .gitignore                          # ← Excludes __pycache__, results/
-│
-├── src/                                # ← Main code
-│   ├── __init__.py
-│   ├── ising_kernel.py                 # Ising 2-component kernel
-│   ├── likelihood.py                   # Log-likelihood computation
-│   ├── estimators.py                   # MLE for epsilon
-│   ├── statistics.py                   # Fisher, Hessian, rank, conditioning
-│   ├── controls.py                     # Time-shuffle, surrogates
-│   ├── validators.py                   # Gates G1–G7
-│   ├── artifacts.py                    # Save JSON, plots, manifests
-│   └── phase1_runner.py                # Orchestrator (main entry point)
-│
-├── tests/                              # ← Unit tests
-│   ├── __init__.py
-│   ├── test_ising_kernel.py
-│   ├── test_estimators.py
-│   ├── test_statistics.py
-│   ├── test_controls.py
-│   └── test_validators.py
-│
-├── results/                            # ← Outputs (Phase I golden run)
-│   └── golden_run_phase1_plus_v1/
-│       ├── phase1plus_summary.json
-│       ├── gate_report.txt
-│       ├── seed_manifest.json
-│       ├── artifacts_manifest.json
-│       └── plots/
-│
-├── audit_bundle/                       # ← Zenodo-ready audit package
-│   ├── phase1_plus_golden_v1.zip
-│   ├── artifacts_manifest.json
-│   └── BUNDLE_METADATA.txt
-│
 ├── config/
+│   ├── __init__.py
 │   └── phase1_config.py                # Pre-registered hyperparameters
 │
-└── notebooks/
-    └── phase1_analysis.ipynb           # Exploratory visualization
+├── results/
+│   ├── _test_phase1_plus/              # Test runs (temporary)
+│   ├── golden_run_phase1_plus_v1/      # Reproducible artifact bundle
+│   └── phase1_plus_full/               # Full Phase I+ validation results
+│
+├── scripts/
+│   ├── __init__.py
+│   ├── make_audit_bundle.py            # Generate Zenodo-ready audit package
+│   └── run_phase1_plus_full.py         # Run complete Phase I+ validation
+│
+├── src/
+│   ├── __init__.py
+│   ├── adversarial_kernel.py           # Adversarial baseline flexibility tests
+│   ├── artifacts.py                    # Save JSON, plots, manifests
+│   ├── controls.py                     # Time-shuffle, surrogates, control procedures
+│   ├── estimators.py                   # MLE for epsilon
+│   ├── ising_kernel.py                 # Ising 2-component kernel
+│   ├── model_selection.py              # Model comparison utilities
+│   ├── phase1_plus_runner.py           # Phase I+ full orchestrator
+│   ├── phase1_runner.py                # Phase I basic orchestrator
+│   ├── statistics.py                   # Fisher, Hessian, rank, conditioning
+│   └── validators.py                   # Gates G1–G7
+│
+├── tests/
+│   ├── __init__.py
+│   ├── test_controls.py                # Unit tests for controls
+│   ├── test_estimators.py              # Unit tests for estimators
+│   ├── test_ising.py                   # Unit tests for Ising kernel
+│   ├── test_phase1_plus_runner.py      # Integration tests
+│   ├── test_statistics.py              # Unit tests for statistics
+│   └── test_validators.py              # Unit tests for gates
+│
+├── .gitignore                          # Git exclusions
+├── main.py                             # Entry point
+├── README.md                           # This file
+└── requirements.txt                    # Python dependencies
 ```
 
 ---
